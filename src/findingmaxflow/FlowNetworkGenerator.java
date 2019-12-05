@@ -1,16 +1,19 @@
 package findingmaxflow;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 
 public class FlowNetworkGenerator {
-	
+
 	// field
 	protected int[][] graph;
 	private int source;
 	private int sink;
 	private int V;
 	private int E;
-	
+
 	// constructor
 	public FlowNetworkGenerator() {
 		Random rand = new Random();
@@ -41,7 +44,7 @@ public class FlowNetworkGenerator {
 			graph[i][i+1] = rand.nextInt(100);
 			e--;
 		}
-		
+
 		// randomly generated the remaining edges in the flow graph
 		while(e!= 0) {
 			int i = rand.nextInt(V-1);
@@ -54,31 +57,53 @@ public class FlowNetworkGenerator {
 			}
 		}
 	}
-	
+
 	// get the source of the flow network
 	public int getSource() {
 		return this.source;
 	}
-	
+
 	// get the sink of the flow network
 	public int getSink() {
 		return this.sink;
 	}
-		
+
 	// print the network in format of a 2d array
 	// the row index is the from, column is to, the number is capacity
-		public static void print (int[][] graph) {
-			int m = graph.length;
-			int n = graph[0].length;
-			for(int i =0 ; i<m; i++) {
-				for (int j = 0; j<n; j++)
-					System.out.print (graph[i][j] + " ");
-				System.out.println();
-			}
+	public static void print (int[][] graph) {
+		int m = graph.length;
+		int n = graph[0].length;
+		for(int i =0 ; i<m; i++) {
+			for (int j = 0; j<n; j++)
+				System.out.print (graph[i][j] + " ");
+			System.out.println();
 		}
-		
-		public static void main (String[] args) {
-			FlowNetworkGenerator flow = new FlowNetworkGenerator();
-			print(flow.graph);
-		}
+	}
+	
+	public static String dotfile(int[][] graph, int num) throws FileNotFoundException, UnsupportedEncodingException {
+		String name = "graph"+num+".dot";
+		PrintWriter writer = new PrintWriter(name, "UTF-8");
+        writer.println("digraph g{");
+        writer.println();
+        writer.println("rankdir = LR");
+        int len = graph.length;
+        for (int i = 0; i < len; i++) {
+        	for (int j = 0; j < len; j++) {
+        		if(graph[i][j]!=0) {
+        			writer.println(i + " -> " + j + " [label = \" " + graph[i][j] + " \"];");
+        		}
+        	}
+        }
+        writer.println();
+        writer.println("label = " + "\" graph "+num+"\"");
+        writer.println("}");
+        writer.close();
+        return name;
+	}
+
+	public static void main (String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+		FlowNetworkGenerator flow = new FlowNetworkGenerator();
+		print(flow.graph);
+		System.out.print(dotfile(flow.graph,1));
+	}
 }
