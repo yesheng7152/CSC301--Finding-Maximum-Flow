@@ -1,0 +1,10 @@
+digraph g{
+
+rankdir = LR
+0 -> 1 [label = " 86 "];
+1 -> 2 [label = " 50 "];
+2 -> 3 [label = " 45 "];
+3 -> 4 [label = " 65 "];
+
+label = " graph 7"
+}
