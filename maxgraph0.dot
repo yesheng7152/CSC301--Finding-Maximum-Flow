@@ -1,16 +1,11 @@
 digraph g{
 
 rankdir = LR
-0 -> 3 [label = " 35/91 "];
-0 -> 4 [label = " 51/58 "];
-0 -> 7 [label = " 4/88 "];
-0 -> 8 [label = " 7/84 "];
-3 -> 9 [label = " 35/35 "];
-4 -> 10 [label = " 51/51 "];
-7 -> 9 [label = " 4/49 "];
-7 -> 10 [label = " 13/13 "];
-8 -> 10 [label = " 7/7 "];
-9 -> 10 [label = " 4/39 "];
+0 -> 1 [label = " 4/10 "];
+1 -> 2 [label = " 4/4 "];
+2 -> 3 [label = " 4/90 "];
+3 -> 4 [label = " 4/64 "];
+4 -> 5 [label = " 4/63 "];
 
-label = " maxgraph 0:  maximum flow = 110 "
+label = " maxgraph 0:  maximum flow = 4 "
 }

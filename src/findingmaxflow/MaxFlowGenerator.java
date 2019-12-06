@@ -6,9 +6,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
+/**
+ * CSC301 Analysis of Algorithm
+ * Assignment 06: Finding Max Flow
+ * @author Yesheng Chen [chenyesh] and Kandice Wu [wuzhaoqi]
+ * 
+ * 
+ * sources: we use and modify edmonds-karp algorithm from
+ *  https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/
+ */
 
-// sources: we use and modify edmonds-karp algorithm from
-// https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/
 public class MaxFlowGenerator {
 	int[][] mGraph;
 	int maxFlow;
@@ -132,37 +139,6 @@ public class MaxFlowGenerator {
         writer.println("}");
         writer.close();
         return name;
-    }
-    
-    // for testing
-    public static void main (String[] args) throws IOException, InterruptedException {
-    	//generating flow network
-    	for(int i=0; i<10; i++) {
-    	FlowNetworkGenerator flow = new FlowNetworkGenerator();
-    	
-    	//generating flow network dot file
-    	String file=flow.dotfile(flow.graph,i);
-    	//preparing for png file
-    	ProcessBuilder processBuilder = new ProcessBuilder();
-    	String[] command = {"/bin/bash", "-c", "/usr/local/bin/dot -Tpng "+file+" -o "+file+".png"};
-    	processBuilder.command(command);
-    	//generating png from dot file 
-    	Process process = processBuilder.start();
-    	
-    	//generating max flow network
-    	MaxFlowGenerator max = new MaxFlowGenerator(flow);
-    	max.maxflow();
-
-    	//generating max flow dot file 
-    	String maxfile = max.maxdot(max.mGraph,flow.graph,i,max.maxFlow);
-    	
-    	//preparing for png file
-    	String[] command2 = {"/bin/bash", "-c", "/usr/local/bin/dot -Tpng "+maxfile+" -o "+maxfile+".png"};
-    	processBuilder.command(command2);
-    	
-    	//generating png from dot file 
-    	Process process2 = processBuilder.start();
-    	}
     }
 }
 

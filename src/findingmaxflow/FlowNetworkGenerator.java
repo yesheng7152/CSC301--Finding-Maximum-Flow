@@ -4,7 +4,11 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
-
+/**
+ * CSC301 Analysis of Algorithm
+ * Assignment 06: Finding Max Flow
+ * @author Yesheng Chen [chenyesh] and Kandice Wu [wuzhaoqi]
+ */
 public class FlowNetworkGenerator {
 
 	// field
