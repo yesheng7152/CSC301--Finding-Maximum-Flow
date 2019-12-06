@@ -80,6 +80,8 @@ public class FlowNetworkGenerator {
 		}
 	}
 	
+	//Generate a dot file based flow network and num(to identify and match the file with maxflow)
+	//return the .dot file in string
 	public static String dotfile(int[][] graph, int num) throws FileNotFoundException, UnsupportedEncodingException {
 		String name = "graph"+num+".dot";
 		PrintWriter writer = new PrintWriter(name, "UTF-8");

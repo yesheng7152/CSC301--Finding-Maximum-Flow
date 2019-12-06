@@ -94,6 +94,7 @@ public class MaxFlowGenerator {
             { 
                 u = parent[v]; 
                 path_flow = Math.min(path_flow, rGraph[u][v]); 
+                //update the maxflow network
                 this.mGraph[u][v] = path_flow;
             } 
   
@@ -110,6 +111,8 @@ public class MaxFlowGenerator {
         } 
     } 
     
+	//Generate a dot file base on maxflow network, flow network, maxflow, and num(to identify and match the file with flow)
+	//return the .dot file in string
     public static String maxdot (int[][] mGraph, int[][] graph, int num, int maxflow) throws FileNotFoundException, UnsupportedEncodingException {
 		String name = "maxgraph"+num+".dot";
 		PrintWriter writer = new PrintWriter(name, "UTF-8");
